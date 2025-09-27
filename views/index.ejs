@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Index page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 20px;
+    }
+
+    a {
+      text-decoration: none;
+      color: white;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    a[href="/add"] {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #28a745;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      background-color: #fff;
+      margin-bottom: 15px;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    li img {
+      display: block;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+
+    li button {
+      padding: 6px 12px;
+      margin-right: 5px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    li form {
+      display: inline;
+    }
+
+    li a button {
+      background-color: #007bff;
+      color: white;
+    }
+
+    li .delete-btn {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    li .delete-btn:hover {
+      background-color: #c82333;
+    }
+
+    li button:hover {
+      opacity: 0.9;
+    }
+
+    h1 + h1 {
+      margin-top: 40px;
+      text-align: center;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <a href="/add">Add Post</a>
+  <h1>Available Post</h1>
+  <%if(posts.length>0){%>
+  <ul>
+    <%posts.forEach(p=>{%>
+      <li>
+        <%if(p.picture){%>
+          <img src="<%=p.picture%>" width="150" alt=""><br>
+        <%}%>
+       
+        <%=p.title%>
+        <a href="/view/<%=p._id%>"><button type="submit">View Details</button></a>
+        <form action="/delete/<%=p._id%>" method="post">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    <%})%>
+  </ul>
+  <%}else{%>
+    <h1>No Data Found </h1>
+  <%}%>
+</body>
+</html>
